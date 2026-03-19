@@ -3,7 +3,7 @@ from app.middleware.security_headers import SecurityHeadersMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.database import init_db
-from app.routers import lectures, users
+from app.routers import lectures, users, quiz
 from app.config import get_settings
 
 settings = get_settings()
@@ -37,6 +37,7 @@ app.add_middleware(
 
 # 라우터 등록
 app.include_router(users.router)
+app.include_router(quiz.router, prefix="/api/v1")
 app.include_router(lectures.router)
 
 
